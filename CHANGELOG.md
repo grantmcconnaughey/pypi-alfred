@@ -1,5 +1,9 @@
 # Changelog
 
+## Version 0.1.2 (December 31, 2018)
+
+* Add support for automatic updates
+
 ## Version 0.1.1 (December 31, 2018)
 
 * Switched PyPI API call to use HTTPS

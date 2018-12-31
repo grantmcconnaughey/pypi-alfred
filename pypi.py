@@ -76,6 +76,13 @@ def main(wf):
 
 
 if __name__ == '__main__':
-    wf = Workflow3()
+    wf = Workflow3(update_settings={
+        'github_slug': 'grantmcconnaughey/pypi-alfred',
+        'frequency': 7
+    })
     logger = wf.logger
+
+    if wf.update_available:
+        wf.start_update()
+
     sys.exit(wf.run(main))
