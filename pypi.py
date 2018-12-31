@@ -5,7 +5,7 @@ from distutils.version import LooseVersion
 from workflow import Workflow3, web, ICON_WEB
 
 CACHE_TTL = 600
-PYPI_PACKAGE_URL = 'http://pypi.python.org/pypi/{package_name}/json'
+PYPI_PACKAGE_URL = 'https://pypi.python.org/pypi/{package_name}/json'
 
 logger = None
 
@@ -63,7 +63,7 @@ def main(wf):
                 subtitle = ''
                 if len(releases) > 0:
                     subtitle = format_subtitle(releases[0])
-                package_version_url = package_data['info']['package_url'] + '/' + version
+                package_version_url = package_data['info']['package_url'] + version
                 wf.add_item(
                     title=title,
                     subtitle=subtitle,
