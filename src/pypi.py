@@ -2,7 +2,7 @@ import datetime
 import sys
 from distutils.version import LooseVersion
 
-from workflow import Workflow3, web, ICON_WEB
+from workflow import ICON_WEB, Workflow, web
 
 CACHE_TTL = 600
 PYPI_PACKAGE_URL = 'https://pypi.python.org/pypi/{package_name}/json'
@@ -31,7 +31,7 @@ def get_package_versions(package_name):
 def format_subtitle(release):
     upload_time = datetime.datetime.strptime(release['upload_time'], "%Y-%m-%dT%H:%M:%S")
     formatted_datetime = upload_time.strftime('%b. %d, %Y')
-    return u'Released on {release_date} \u2022 {size} size \u2022 {downloads} downloads'.format(
+    return 'Released on {release_date} \u2022 {size} size \u2022 {downloads} downloads'.format(
         release_date=formatted_datetime,
         downloads=release['downloads'],
         size=file_size(release['size'])
@@ -53,7 +53,7 @@ def main(wf):
         package_data = wf.cached_data(cache_name, wrapper, max_age=CACHE_TTL)
 
         if package_data:
-            for version, releases in sorted(package_data['releases'].iteritems(),
+            for version, releases in sorted(package_data['releases'].items(),
                                             key=lambda p: LooseVersion(p[0]),
                                             reverse=True):
                 title = '{package_name}=={version}'.format(
@@ -76,7 +76,7 @@ def main(wf):
 
 
 if __name__ == '__main__':
-    wf = Workflow3(update_settings={
+    wf = Workflow(update_settings={
         'github_slug': 'grantmcconnaughey/pypi-alfred',
         'frequency': 7
     })
